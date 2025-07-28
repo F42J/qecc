@@ -9,6 +9,10 @@ This project adheres to [Semantic Versioning], with the exception that minor rel
 
 ## [Unreleased]
 
+### Added
+
+- Added `NoiseModel` class for applying noise to a given stim circuit. ([#453]) ([**@pehamtom**])
+
 ## [1.9.0] - 2025-03-14
 
 _📚 Refer to the [GitHub Release Notes](https://github.com/munich-quantum-toolkit/qecc/releases) for previous changelogs._
@@ -19,6 +23,8 @@ _📚 Refer to the [GitHub Release Notes](https://github.com/munich-quantum-tool
 [1.9.0]: https://github.com/munich-quantum-toolkit/qecc/releases/tag/v1.9.0
 
 <!-- PR links -->
+
+[#453]: https://github.com/munich-quantum-toolkit/qecc/pull/453
 
 <!-- Contributor -->
 
