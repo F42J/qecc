@@ -19,7 +19,7 @@ from .encoding import (
     heuristic_encoding_circuit,
 )
 from .noise import CircuitLevelNoiseIdlingParallel, CircuitLevelNoiseIdlingSequential
-from .simulation import LutDecoder, SteaneNDFTStatePrepSimulator, VerificationNDFTStatePrepSimulator
+from .simulation import LutDecoder, SteaneNDFTStatePrepSimulator, VerificationNDFTStatePrepSimulator, SparseVerificationSimulator
 from .state_prep import (
     FaultyStatePrepCircuit,
     depth_optimal_prep_circuit,
@@ -60,3 +60,5 @@ __all__ = [
     "naive_verification_circuit",
     "qiskit_to_stim_circuit",
 ]
+
+from mqt.qecc.circuit_synthesis.ladder_place_and_route import LadderPlaceAndRoute

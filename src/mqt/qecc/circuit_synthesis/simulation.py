@@ -714,3 +714,33 @@ def _merge_into(target: dict[bytes, npt.NDArray[np.int8]], source: dict[bytes, n
     for key, state in source.items():
         if key not in target:
             target[key] = state
+
+
+class SparseVerificationSimulator(VerificationNDFTStatePrepSimulator):
+    def __init__(
+        self,
+        state_prep_circ,
+        code,
+        breach_qubits: list[int],
+        zero_state=True,
+        decoder=None,
+    ) -> None:
+        # 1. Initialize the standard simulator
+        super().__init__(state_prep_circ, code, zero_state, decoder)
+
+        # 2. Filter out the breach qubits from the automatically detected data qubits
+        # The parent class blindly grabbed everything unmeasured; we fix that here.
+        count_before = len(self.data_qubits)
+        self.data_qubits = sorted(
+            [q for q in self.data_qubits if q not in breach_qubits]
+        )
+        count_after = len(self.data_qubits)
+        print(f"Removed {count_before - count_after} data qubits.")
+
+        # 3. Validation (Optional but recommended)
+        # Ensure we have exactly code.n data qubits left
+        if len(self.data_qubits) != code.n:
+            raise ValueError(
+                f"Expected {code.n} data qubits, but found {len(self.data_qubits)}. "
+                f"Check your breach_qubits indices."
+            )
